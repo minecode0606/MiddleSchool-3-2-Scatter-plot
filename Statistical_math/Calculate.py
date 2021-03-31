@@ -1,4 +1,7 @@
 import bisect
+def reverse(ls:list):
+    return ls.reverse()
+
 class Calculate:
     def __init__(self):
         pass
@@ -25,12 +28,16 @@ class Calculate:
         r = sorted(a)
         s_index = 0
         e_index = len(r)
-        init = r
+        init = list(r)
+        for i in range(len(r) - (len(r) // 2) - 1):
+            del init[i]
         if len(r) % 2 == 0:
-            for i in range(len(r) - 2):
-                init.pop(s_index + i)
-                init.pop(e_index - i)
-        return init
+            return (init[0] + init[1]) / 2
+        else:
+            return init[0]
+
+
+
 
 
 
@@ -39,5 +46,6 @@ class Calculate:
 
 if __name__ == '__main__':
     cal = Calculate()
+    print(reverse([1, 2, 3, 4, 5, 6]))
     print(cal.median([3, 4, 2, 4, 5, 7, 3, 6]))
 
