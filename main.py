@@ -3,10 +3,13 @@
 #======================
 import tkinter as tk
 from tkinter import ttk
+from Statistical_math.Calculate import Calculate
+
+
 
 # Create instance
 win = tk.Tk()   
-
+cal = Calculate()
 # Add a title       
 win.title("Python GUI")
 win.geometry("640x480")
@@ -19,17 +22,25 @@ a_label.grid(column=0, row=0)
 def click_me():
     global dataset
     dataset = name.get()
-    print(dataset)
+    datalist = []
+    for d in dataset:
+        datalist.append(int(d))
+    mean = cal.mean(datalist)
+    median = cal.median(datalist)
+    deviation = cal.deviation(datalist)
+    dispersion = cal.dispersion(datalist)
+
 
 
 # Adding a Text box Entry widget
 name = tk.StringVar()
-name_entered = ttk.Entry(win, width=12, textvariable=name)
+name_entered = ttk.Entry(win, width=30, textvariable=name)
 name_entered.grid(column=1, row=0)
 
 # Adding a Button
 action = ttk.Button(win, text="입력", command=click_me)
 action.grid(column=2, row=0)
+
 
 #======================
 # Start GUI
